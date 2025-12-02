@@ -5,11 +5,17 @@ LFLAGS=-pthread
 # un flag differente ("-lpthread").
 #LFLAGS=-lpthread
 
-all: helloMT
+all: helloMT_pass_stack helloMT_pass_stack_no_warn helloMT_pass_heap
 
-helloMT: helloMT.c
-	$(CC) $(LFLAGS) -o helloMT helloMT.c
+helloMT_pass_stack: helloMT_pass_stack.c
+	$(CC) $(LFLAGS) -o helloMT_pass_stack helloMT_pass_stack.c
+
+helloMT_pass_stack_no_warn: helloMT_pass_stack_no_warn.c
+	$(CC) $(LFLAGS) -o helloMT_pass_stack_no_warn helloMT_pass_stack_no_warn.c
+
+helloMT_pass_heap: helloMT_pass_heap.c
+	$(CC) $(LFLAGS) -o helloMT_pass_heap helloMT_pass_heap.c
 
 clean:
-	rm -f helloMT
+	rm -f helloMT_pass_stack helloMT_pass_stack_no_warn helloMT_pass_heap
 
