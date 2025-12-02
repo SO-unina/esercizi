@@ -18,7 +18,11 @@ int main (int argc, char *argv[]) {
 	int rc;
 	for(int i=0; i<NUM_THREADS; i++){
 		printf("Creating thread %d\n", i);
-
+		
+                /* Allocazione dell'argomento da passare al thread tramite stack del thread padre. 
+			Questo tipo di allocazione genera dei warning dal punto di vista del typecast
+			Questo tipo di passaggio dei parametri è altamente SCONSIGLIATO!
+		*/
 		rc = pthread_create(&threads[i], NULL, PrintHello, (void *)i);
 		if (rc!=0){
 			printf("ERROR; return code from pthread_create() is %d\n", rc);

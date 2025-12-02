@@ -4,6 +4,7 @@
 
 #define NUM_THREADS     5
 
+
 void * PrintHello(void * arg) { // start routine 
 
 	int *p_arg = (int*) arg;
@@ -21,6 +22,8 @@ int main (int argc, char *argv[]) {
 	int rc;
 	for(int i=0; i<NUM_THREADS; i++){
 		printf("Creating thread %d\n", i);
+
+		/* Allocazione dell'argomento da passare al thread tramite HEAP */
 
 		int *ptr_i = malloc(sizeof(int));
       		*ptr_i = i;
