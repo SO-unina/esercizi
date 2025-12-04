@@ -26,8 +26,8 @@ struct ProdCons {
 };
 
 
-void * Consumatore(void *);
-void * Produttore(void *);
+void *Consumatore(void *);
+void *Produttore(void *);
 
 void Produci(struct ProdCons *, msg m);
 msg Consuma(struct ProdCons *);

@@ -7,10 +7,9 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
-#include <pthread.h>
+#include <stdint.h>
+
 #include "header.h"
-
-
 /* Metodi pubblici del monitor */
 
 void Produci(struct ProdCons * pc, msg m) {
@@ -25,10 +24,10 @@ void Produci(struct ProdCons * pc, msg m) {
 		
                 //int my_id = syscall(SYS_gettid);
                 
-                uint64_t my_id;
-                pthread_threadid_np(NULL, &my_id);
+                pthread_t my_id = pthread_self();
 
 	        printf("Thread #%llu Valore PRODOTTO = [%ld] \n", my_id, pc->mess);
+
 
 		FineProduzione(pc);
 
@@ -46,8 +45,8 @@ msg Consuma(struct ProdCons * pc) {
 		// NOTA: la chiamata di sistema "gettid()" è disponibile solo
 		// sul sistema operativo Linux (non è portabile su altre piattaforme)
 		//int my_id = syscall(SYS_gettid);
-                uint64_t my_id;
-                pthread_threadid_np(NULL, &my_id);
+                
+		pthread_t my_id = pthread_self();
 
 	        printf("Thread #%llu, valore CONSUMATO = [%ld] \n", my_id, pc->mess);
 
@@ -67,7 +66,7 @@ void InizioConsumo(struct ProdCons * pc){
 
 	pthread_mutex_lock(&pc->mutex);
 
-	while (pc->ok_consumo==0)
+	if(pc->ok_consumo==0)
 		pthread_cond_wait(&pc->ok_cons_cv, &pc->mutex);
 }
 
@@ -86,7 +85,7 @@ void InizioProduzione(struct ProdCons * pc){
 
 	pthread_mutex_lock(&pc->mutex);
 
-	while (pc->ok_produzione==0)
+	if (pc->ok_produzione==0)
 		pthread_cond_wait(&pc->ok_prod_cv, &pc->mutex);
 
 }
@@ -120,10 +119,9 @@ void *Produttore(void* p) {
 			Produci(pc, m);
 		}
 
-		pthread_exit(NULL);
 }
 
-void * Consumatore (void * p) {
+void *Consumatore (void * p) {
 
 		struct ProdCons * pc = (struct ProdCons *)p;
 
@@ -133,7 +131,6 @@ void * Consumatore (void * p) {
 			msg m = Consuma(pc);
 		}
 
-		pthread_exit(NULL);
 }
 
 
