@@ -7,11 +7,9 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
-#include <pthread.h>
+//#include <pthread.h>
+
 #include "header.h"
-
-
-
 
 /* Entry-point dei thread */
 
@@ -65,8 +63,7 @@ msg Leggi(struct LettScritt * ls) {
 		// sul sistema operativo Linux (non è portabile su altre piattaforme)
 		//int my_id = syscall(SYS_gettid);
 
-                uint64_t my_id;
-                pthread_threadid_np(NULL, &my_id);
+                pthread_t my_id = pthread_self(); // portable way to get thread ID
 
 	        printf("Thread #%llu, valore LETTO = [%ld] \n", my_id, ls->mess);
 
@@ -88,8 +85,7 @@ void Scrivi(struct LettScritt * ls, msg m) {
 		// sul sistema operativo Linux (non è portabile su altre piattaforme)
 		//int my_id = syscall(SYS_gettid);
 
-                uint64_t my_id;
-                pthread_threadid_np(NULL, &my_id);
+                pthread_t my_id = pthread_self(); // portable way to get thread ID
 
                 ls->mess = m;
 

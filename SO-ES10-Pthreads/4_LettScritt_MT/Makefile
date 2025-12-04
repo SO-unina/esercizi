@@ -11,10 +11,10 @@ l_s_MT: l_s_MT.o procedure.o
 	gcc  $(LFLAGS) -o l_s_MT l_s_MT.o procedure.o
 
 l_s_MT.o: l_s_MT.c header.h 
-	gcc -c  l_s_MT.c
+	gcc -c l_s_MT.c
 
 procedure.o: procedure.c header.h
-	gcc -c  procedure.c 
+	gcc -c procedure.c 
 
 clean:
 	 rm -f *.o 
