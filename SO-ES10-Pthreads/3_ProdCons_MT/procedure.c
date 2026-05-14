@@ -66,7 +66,7 @@ void InizioConsumo(struct ProdCons * pc){
 
 	pthread_mutex_lock(&pc->mutex);
 
-	if(pc->ok_consumo==0)
+	while (pc->ok_consumo==0)
 		pthread_cond_wait(&pc->ok_cons_cv, &pc->mutex);
 }
 
@@ -85,7 +85,7 @@ void InizioProduzione(struct ProdCons * pc){
 
 	pthread_mutex_lock(&pc->mutex);
 
-	if (pc->ok_produzione==0)
+	while (pc->ok_produzione==0)
 		pthread_cond_wait(&pc->ok_prod_cv, &pc->mutex);
 
 }
