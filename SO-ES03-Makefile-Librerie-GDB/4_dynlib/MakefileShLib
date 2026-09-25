@@ -1,17 +1,19 @@
 CURR = $(PWD)
 
+.PHONY: all clean
+
 all: calc
 
-calc: mat.so main.o
+calc: libmat.so main.o
 	gcc -o calc main.o -L$(CURR)/ -lmat
 
-main.o: 
+main.o: main.c mat.h
 	gcc -c main.c
 
-mat.so: mat.o
+libmat.so: mat.o
 	gcc -shared -Wl,-soname,libmat.so -o libmat.so mat.o
 
-mat.o: mat.h
+mat.o: mat.c mat.h
 	gcc -c -fpic mat.c
 
 clean:

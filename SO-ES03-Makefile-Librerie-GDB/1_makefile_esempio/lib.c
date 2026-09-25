@@ -9,7 +9,7 @@ void leggi_vettore(int a[], const int n) {
 
 	printf("LEGGI VETTORE....\n");
 	for (i=0; i<n; i++) {
-		printf("Inserire elemento n.ro: %d\n");
+		printf("Inserire elemento n.ro %d: ", i);
 		scanf("%d", &a[i]);
 	}
 }

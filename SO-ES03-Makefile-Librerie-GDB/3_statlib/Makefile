@@ -1,14 +1,16 @@
 CURR=${PWD}
 
-all: calcola
+.PHONY: all clean
 
-calcola: mat.a
+all: calc
+
+calc: main.c mat.h libmat.a
 	gcc -o calc main.c -L$(CURR) -lmat
 
-mat.a: mat.o
+libmat.a: mat.o
 	ar rcs libmat.a mat.o
 
-mat.o: mat.h
+mat.o: mat.c mat.h
 	gcc -c mat.c
 
 clean:

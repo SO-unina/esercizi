@@ -1,23 +1,31 @@
-C = gcc
-CFLAGS = -c -o
-LDFLAGS = -o
+CC = gcc
+CFLAGS = -Wall -g
 DEPS = lib.h
 OBJ = lib.o main.o
+
+.PHONY: all clean
 
 all: start
 
 start: $(OBJ)
-	$(CPP) $(LDFLAGS) $@ $^
+	$(CC) -o $@ $^
 
 %.o: %.c $(DEPS)
-	$(CPP) $(CPPFLAGS) $@ $<
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
 	rm -f *.o
-	rm -f ./start 
+	rm -f ./start
 	rm -f *~
 
 # Variabili speciali
 # $@ = il target della regola
 # $^ = la lista delle dipendenze
 # $< = la prima dipendenza
+#
+# Regola implicita (pattern rule)
+# %.o: %.c  -> "ogni file .o si ottiene dal .c con lo stesso nome"
+#
+# .PHONY dichiara che all e clean non sono file da generare:
+# senza .PHONY, se nella cartella esistesse un file chiamato "clean",
+# make clean risponderebbe "make: 'clean' is up to date." senza fare nulla.
