@@ -39,7 +39,7 @@ if(pid == 0) {		// il figlio continua qui
 
 	// Op. qualsiasi (libera memoria, chiudi connessioni, etc.)
 	
-	execl(“program”, arg0, arg1, arg2, …);
+	execl("program", arg0, arg1, arg2, …);
 }
 ```
 

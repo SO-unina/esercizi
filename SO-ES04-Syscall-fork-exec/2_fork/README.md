@@ -40,14 +40,14 @@ if (pid == -1) {
 
 // Scrivo il codice inerente al processo figlio
 if (pid == 0) { 
-	printf(“This is the child\n"); 
+	printf("This is the child\n"); 
 	// Aggiungere altro
 	exit(0); 
 } 
 
 // Scrivo il codice inerente al processo padre
 if (pid > 0) { 
-	printf(“This is parent. The child is %d\n", pid); 
+	printf("This is parent. The child is %d\n", pid); 
 	// Aggiungere altro
 	exit(0); 
 }
