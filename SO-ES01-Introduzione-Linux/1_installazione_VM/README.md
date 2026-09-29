@@ -1,121 +1,72 @@
 # Istruzioni per uso della macchina virtuale a supporto della parte esercitativa del corso di Sistemi Operativi
 
-###### Docenti: Domenico Cotroneo, Marcello Cinque, Luigi De Simone, Roberto Natella
+###### Docenti: Domenico Cotroneo, Marcello Cinque, Luigi De Simone, Roberto Natella, Cristina Improta
 
 > **_N.B.:_** Per poter eseguire una macchina virtuale è necessario abilitare le estensioni di virtualizzazione della macchina fisica. Queste estensioni vanno abilitate dal BIOS all'avvio della macchina. Seguire una guida qualsiasi in base al modello del PC.
 
-La macchina virtuale ospita il sistema operativo **Debian GNU/Linux 12**, e contiene al suo interno i principali pacchetti software utili per il corso (shell, compilatore, debugger, etc.). L'username e password dell'utente di default sono rispettivamente **studente** e **studente**.
+La macchina virtuale è **già pronta all'uso**: non va installato nessun sistema operativo, basta scaricarla e avviarla. Contiene **Ubuntu 22.04 LTS** con i principali pacchetti software utili per il corso (shell, compilatore, etc.). L'username e password dell'utente di default sono rispettivamente **studente** e **studente**.
 
-La macchina è contenuta in un file con estensione **.ova** da scaricare tramite i seguenti link: 
+## Quale macchina scaricare
 
-- [LINK1 file .ova](https://communitystudentiunina-my.sharepoint.com/:u:/g/personal/luigi_desimone_unina_it/EdizLTSD7bpFiWYc6FfUpeABP2cuyZ2Cm00Fjbk00mHl_A?e=NXHWcY&isSPOFile=1&xsdata=MDV8MDJ8fDMyYTk5NWE0OGQxYzQ5NWMzMmMyMDhkZDY2ZmU1ODc2fDJmY2ZlMjZhYmI2MjQ2YjBiMWUzMjhmOWRhMGM0NWZkfDB8MHw2Mzg3Nzk5NjQ3NDgzNDYwNTB8VW5rbm93bnxWR1ZoYlhOVFpXTjFjbWwwZVZObGNuWnBZMlY4ZXlKV0lqb2lNQzR3TGpBd01EQWlMQ0pRSWpvaVYybHVNeklpTENKQlRpSTZJazkwYUdWeUlpd2lWMVFpT2pFeGZRPT18MXxMM1JsWVcxekx6RTVPbEJ6YVdWNE56UkJNakJ2VFdkNlNDMWhlR2QyZUdSMFprOW9aalZpYjBoWVJUQTVjMmhwT0Rac1dUUXhRSFJvY21WaFpDNTBZV04yTWk5amFHRnVibVZzY3k4eE9UcFFjMmxsZURjMFFUSXdiMDFuZWtndFlYaG5kbmhrZEdaUGFHWTFZbTlJV0VVd09YTm9hVGcyYkZrME1VQjBhSEpsWVdRdWRHRmpkakl2YldWemMyRm5aWE12TVRjME1UWXdNemswTmpJNU9BPT18MDAyYTk2MTE4MDk0NDdkYWQwOTYwOGRkNjZmZTU4NzN8MjM2MDQxMGI5ZjdkNGQ0OGJjMDE2MzBkZTQ4ZmRkMmQ%3D&sdata=SlVFWWdTOVhXZ2NOOFMyRzlmeWNOelJCMitQd0V0SHVJME1JUnkxUVg3ND0%3D&ovuser=2fcfe26a-bb62-46b0-b1e3-28f9da0c45fd%2Cluigi.desimone%40unina.it)
+La scelta dipende dal processore del proprio computer:
 
-- [LINK2 file .zip](https://communitystudentiunina-my.sharepoint.com/:u:/g/personal/luigi_desimone_unina_it/EdizLTSD7bpFiWYc6FfUpeABP2cuyZ2Cm00Fjbk00mHl_A?e=NXHWcY&isSPOFile=1&xsdata=MDV8MDJ8fDMyYTk5NWE0OGQxYzQ5NWMzMmMyMDhkZDY2ZmU1ODc2fDJmY2ZlMjZhYmI2MjQ2YjBiMWUzMjhmOWRhMGM0NWZkfDB8MHw2Mzg3Nzk5NjQ3NDgzNDYwNTB8VW5rbm93bnxWR1ZoYlhOVFpXTjFjbWwwZVZObGNuWnBZMlY4ZXlKV0lqb2lNQzR3TGpBd01EQWlMQ0pRSWpvaVYybHVNeklpTENKQlRpSTZJazkwYUdWeUlpd2lWMVFpT2pFeGZRPT18MXxMM1JsWVcxekx6RTVPbEJ6YVdWNE56UkJNakJ2VFdkNlNDMWhlR2QyZUdSMFprOW9aalZpYjBoWVJUQTVjMmhwT0Rac1dUUXhRSFJvY21WaFpDNTBZV04yTWk5amFHRnVibVZzY3k4eE9UcFFjMmxsZURjMFFUSXdiMDFuZWtndFlYaG5kbmhrZEdaUGFHWTFZbTlJV0VVd09YTm9hVGcyYkZrME1VQjBhSEpsWVdRdWRHRmpkakl2YldWemMyRm5aWE12TVRjME1UWXdNemswTmpJNU9BPT18MDAyYTk2MTE4MDk0NDdkYWQwOTYwOGRkNjZmZTU4NzN8MjM2MDQxMGI5ZjdkNGQ0OGJjMDE2MzBkZTQ4ZmRkMmQ%3D&sdata=SlVFWWdTOVhXZ2NOOFMyRzlmeWNOelJCMitQd0V0SHVJME1JUnkxUVg3ND0%3D&ovuser=2fcfe26a-bb62-46b0-b1e3-28f9da0c45fd%2Cluigi.desimone%40unina.it)
+| Computer | Macchina virtuale | Programma di virtualizzazione |
+| --- | --- | --- |
+| Windows o Linux (processore Intel/AMD, x86) | [UNINA_DEV_VM_final.zip](https://communitystudentiunina-my.sharepoint.com/:u:/g/personal/luigi_desimone_unina_it/IQAwVDye4BfLS52EzhDo4j08AcrvyAskAPJQXEX8yJ41guU?e=I3GaF1&isSPOFile=1&xsdata=MDV8MDJ8fGRmYzIxMzE1YzEyMTRmN2ZlY2Q2MDhkZjFkNzU3YmYxfDJmY2ZlMjZhYmI2MjQ2YjBiMWUzMjhmOWRhMGM0NWZkfDB8MHw2MzkyNjIwNjI1Mzc3MzEyODZ8VW5rbm93bnxWR1ZoYlhOVFpXTjFjbWwwZVZObGNuWnBZMlY4ZXlKRFFTSTZJbFJsWVcxelgwRlVVRk5sY25acFkyVmZVMUJQVEU5R0lpd2lWaUk2SWpBdU1DNHdNREF3SWl3aVVDSTZJbGRwYmpNeUlpd2lRVTRpT2lKUGRHaGxjaUlzSWxkVUlqb3hNWDA9fDF8TDJOb1lYUnpMekU1T2pVMU16azNNemxrTFdVMlpXSXROREptWWkwNFpUZG1MVEJoTVdJMllXSTRObUl5Wmw5bFpUY3pNVFpoT0MwelpEWmtMVFF6WkdZdFltWmhOaTB4WkdZNU5UUTNOek5sWVRsQWRXNXhMbWRpYkM1emNHRmpaWE12YldWemMyRm5aWE12TVRjNU1EWXdPVFExTWpVMU1BPT18N2Y2Y2Y0NzQ0YjA5NGMyOThhNmIwOGRmMWQ3NTdiZWZ8ZGMzM2I5NjZiZGE4NGFmMzg5YTQyOTNjYzdjYWEwMDU%3D&sdata=WGZBRVd5VE16NGNtNW1YYkhWMzNUaDRhc1hRWER6SWtyN2xJMm4vdHdhaz0%3D&ovuser=2fcfe26a-bb62-46b0-b1e3-28f9da0c45fd%2Cfrancesco.boccola%40unina.it) (x86) | **VMware Workstation** (Windows, Linux) oppure **VMware Fusion** (Mac con processore Intel) |
+| Mac con processore Apple Silicon (M1, M2, ...) | [UNINA_DEV_VM.utm.zip](https://communitystudentiunina-my.sharepoint.com/:u:/g/personal/raffaele_dellacorte2_unina_it/IQCYc9F1KWkJT7c2726Jp1RlAXaIqE74HXe9f2FQ-eKxyVA?isSPOFile=1&xsdata=MDV8MDJ8fGRmYzIxMzE1YzEyMTRmN2ZlY2Q2MDhkZjFkNzU3YmYxfDJmY2ZlMjZhYmI2MjQ2YjBiMWUzMjhmOWRhMGM0NWZkfDB8MHw2MzkyNjIwNjI1Mzc3MzEyODZ8VW5rbm93bnxWR1ZoYlhOVFpXTjFjbWwwZVZObGNuWnBZMlY4ZXlKRFFTSTZJbFJsWVcxelgwRlVVRk5sY25acFkyVmZVMUJQVEU5R0lpd2lWaUk2SWpBdU1DNHdNREF3SWl3aVVDSTZJbGRwYmpNeUlpd2lRVTRpT2lKUGRHaGxjaUlzSWxkVUlqb3hNWDA9fDF8TDJOb1lYUnpMekU1T2pVMU16azNNemxrTFdVMlpXSXROREptWWkwNFpUZG1MVEJoTVdJMllXSTRObUl5Wmw5bFpUY3pNVFpoT0MwelpEWmtMVFF6WkdZdFltWmhOaTB4WkdZNU5UUTNOek5sWVRsQWRXNXhMbWRpYkM1emNHRmpaWE12YldWemMyRm5aWE12TVRjNU1EWXdPVFExTWpVMU1BPT18N2Y2Y2Y0NzQ0YjA5NGMyOThhNmIwOGRmMWQ3NTdiZWZ8ZGMzM2I5NjZiZGE4NGFmMzg5YTQyOTNjYzdjYWEwMDU%3D&sdata=a1hibm85RGk1bDRzZmFmMlQ4NnA4UTloeUlJYXVCYzc0UjdJVDBuZVhmVT0%3D&ovuser=2fcfe26a-bb62-46b0-b1e3-28f9da0c45fd%2Cfrancesco.boccola%40unina.it) (ARM) | **UTM** |
 
-- [LINK3 file UTM (per M1/M2)](https://communitystudentiunina-my.sharepoint.com/:u:/g/personal/raffaele_dellacorte2_unina_it/Ed6eLzyolaJGlIc8hjpleRUBs9iHSlPjfsB_1bj5sIZyyQ?e=yfIRLT&isSPOFile=1&xsdata=MDV8MDJ8fDMyYTk5NWE0OGQxYzQ5NWMzMmMyMDhkZDY2ZmU1ODc2fDJmY2ZlMjZhYmI2MjQ2YjBiMWUzMjhmOWRhMGM0NWZkfDB8MHw2Mzg3Nzk5NjQ3NDg1MDIzNjJ8VW5rbm93bnxWR1ZoYlhOVFpXTjFjbWwwZVZObGNuWnBZMlY4ZXlKV0lqb2lNQzR3TGpBd01EQWlMQ0pRSWpvaVYybHVNeklpTENKQlRpSTZJazkwYUdWeUlpd2lWMVFpT2pFeGZRPT18MXxMM1JsWVcxekx6RTVPbEJ6YVdWNE56UkJNakJ2VFdkNlNDMWhlR2QyZUdSMFprOW9aalZpYjBoWVJUQTVjMmhwT0Rac1dUUXhRSFJvY21WaFpDNTBZV04yTWk5amFHRnVibVZzY3k4eE9UcFFjMmxsZURjMFFUSXdiMDFuZWtndFlYaG5kbmhrZEdaUGFHWTFZbTlJV0VVd09YTm9hVGcyYkZrME1VQjBhSEpsWVdRdWRHRmpkakl2YldWemMyRm5aWE12TVRjME1UWXdNemswTmpJNU9BPT18MDAyYTk2MTE4MDk0NDdkYWQwOTYwOGRkNjZmZTU4NzN8MjM2MDQxMGI5ZjdkNGQ0OGJjMDE2MzBkZTQ4ZmRkMmQ%3D&sdata=akhSdEhQRm4rWkszR3BGZ1ZEN21oWlk1ODVVOFhDaFk5VjZJcm5FN0pXZz0%3D&ovuser=2fcfe26a-bb62-46b0-b1e3-28f9da0c45fd%2Cluigi.desimone%40unina.it)
+> **_N.B.:_** Il file da scaricare è molto grande (decine di GB una volta decompresso): verificare di avere spazio libero sufficiente sul disco prima di iniziare.
 
-E' possibile eseguire la macchina virtuale utilizzando il programma **VMware Workstation Player** (per Windows e Linux). Il programma è gratuitamente scaricabile da internet.
+## Windows, Linux e Mac Intel: VMware
 
+### 1. Installare VMware
+
+Scaricare e installare gratuitamente **VMware Workstation** (Windows e Linux) oppure **VMware Fusion** (Mac) da questo link:
+[https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion)
+
+### 2. Scaricare e decomprimere la macchina virtuale
+
+Scaricare il file **UNINA_DEV_VM_final.zip** dal link nella tabella precedente e **decomprimerlo** in una cartella a scelta. Si otterrà una cartella `UNINA_DEV_VM_final` contenente, tra gli altri, il file **UNINA_DEV_VM_final.vmx**.
+
+<!-- PLACEHOLDER SCREENSHOT 1: Esplora file (Windows) con la cartella UNINA_DEV_VM_final decompressa aperta, file UNINA_DEV_VM_final.vmx evidenziato -->
 <p align="center">
-<img src="../images/image009.png" width="500" > 
+<img src="images/vm_01_cartella_vmx.png" width="500" alt="[SCREENSHOT DA INSERIRE] Cartella decompressa con il file .vmx evidenziato">
 </p>
 
+### 3. Aprire la macchina virtuale
 
-Per importare la macchina virtuale in VMware Workstation Player, si selezioni la voce **Importa...**.
+Aprire il file **UNINA_DEV_VM_final.vmx** con VMware (doppio click sul file, oppure dal menu **File -> Open...** di VMware). Non serve importare né convertire nulla: la macchina virtuale apparirà direttamente nella libreria di VMware.
 
+<!-- PLACEHOLDER SCREENSHOT 2: VMware Workstation con la VM UNINA_DEV_VM_final visibile nella libreria (colonna a sinistra) e la scheda della VM aperta, con i pulsanti "Power on this virtual machine" e "Edit virtual machine settings" ben visibili -->
 <p align="center">
-<img src="../images/image010.png" width="300" > 
+<img src="images/vm_02_vmware_libreria.png" width="500" alt="[SCREENSHOT DA INSERIRE] VMware con la VM nella libreria">
 </p>
 
+### 4. (Opzionale) Personalizzare l'hardware virtuale
 
-Si aprirà una nuova finestra, in cui accorrerà scegliere il file **.ova** della macchina virtuale.
+Per default la macchina virtuale usa **4 GB di memoria RAM** e **4 CPU virtuali**. Se il proprio computer ha poche risorse (o, al contrario, ne ha in abbondanza) è possibile modificare questi valori prima dell'avvio, cliccando su **Edit virtual machine settings**. La raccomandazione è quella di avere almeno 2 CPU virtuali e almeno 2 GB di memoria RAM.
 
+<!-- PLACEHOLDER SCREENSHOT 3: finestra "Virtual Machine Settings" (Hardware) con le voci Memory e Processors selezionabili/visibili -->
 <p align="center">
-<img src="../images/image011.png" width="500" > 
+<img src="images/vm_03_impostazioni_hardware.png" width="500" alt="[SCREENSHOT DA INSERIRE] Impostazioni hardware della VM (Memory, Processors)">
 </p>
 
+### 5. Avviare la macchina virtuale
 
-Nel caso dovesse apparire il seguente popup sulla verifica di conformità, selezionare l'opzione **Riprova** per forzare l'importazione.
+Cliccare su **Power on this virtual machine** (pulsante di avvio). Al termine dell'avvio del sistema operativo, e della fase di login (utente: studente, password: studente), la macchina virtuale apparirà come segue:
 
+<!-- PLACEHOLDER SCREENSHOT 4: desktop di Ubuntu della VM completamente avviata (dopo il login, magari con un terminale aperto) -->
 <p align="center">
-<img src="../images/image012.png" width="300" > 
+<img src="images/vm_04_desktop_avviato.png" width="500" alt="[SCREENSHOT DA INSERIRE] Desktop della macchina virtuale avviata">
 </p>
 
+## Mac con Apple Silicon (M1, M2, ...): UTM
 
-L'importazione della macchina virtuale potrebbe richiedere svariati minuti, dipendentemente dalla potenza della macchine fisica ospitante.
+1. Scaricare **UTM** da [https://mac.getutm.app](https://mac.getutm.app), cliccando su "download" per la versione gratuita, e installarlo.
+2. Scaricare il file **UNINA_DEV_VM.utm.zip** dal link nella tabella precedente e **decomprimerlo**. Si otterrà il file **ACPM1.utm**.
+3. Aprire UTM, cliccare su **Create a New Virtual Machine** e poi su **Open**, quindi selezionare il file **ACPM1.utm** appena decompresso.
+4. Selezionare la macchina virtuale nell'elenco a sinistra e avviarla con il pulsante di **play**.
 
-<p align="center">
-<img src="../images/image013.png" width="500" > 
-</p>
-
-
-Al termine dell'operazione, è possibile scegliere di personalizzare l'hardware virtuale da utilizzare per la VM importata oppure proseguire con i valori di default. La raccomandazione è quella di avere almeno 2 CPU virtuali e almeno 2Gb di memoria RAM.
-
-<p align="center">
-<img src="../images/image014.png" width="500" > 
-</p>
-
-
-La macchina virtuale dovrà apparire correttamente nella libreria di VMware Workstation Player.
-
-Per VMWare è possibile installare le guest additions, che sono chiamate **VMware Tools** (vedi Figura seguente).
-
-<p align="center">
-<img src="../images/image016.jpg" width="500" > 
-</p>
-
-
-In alternativa a VMWare Workstation Player, è possibile utilizzare l'applicativo VirtualBox, installabile scaricando il programma di installazione dal sito internet della Oracle ([https://www.virtualbox.org/wiki/Downloads](https://www.virtualbox.org/wiki/Downloads)).
-
-La versione raccomandata di VirtualBox è quella più recente.
-
-Una volta installato VirtualBox è possibile **importare** la macchina virtuale, scegliendo ' **File -> Importa applicazione virtuale**' come in figura:
-
-<p align="center">
-<img src="../images/image002.png" width="300">
-</p> 
-
-
-
-Appare la seguente form dove inserire **il percorso del file .ova** con la macchina virtuale da caricare:
-
-
-<p align="center">
-<img src="../images/image005.png" width="500" > 
-</p>
-
-
-Cliccare qui per selezionare il file .ova
-
-<p align="center">
-<img src="../images/image006.png" width="500" > 
-</p>
-
-
-Cliccare l'icona a destra del campo di testo (il bottone evidenziato in rosso nell'immagine precedente), scegliere il file di estensione '.ova'.
-
-<p align="center">
-<img src="../images/image007.png" width="500" > 
-</p>
-
-
-Cliccando su **Continua** , dopo pochi minuti la macchina virtuale sarà importata in VirtualBox. La macchina virtuale apparirà a sinistra nella schermata principale di VirtualBox.
-
-
-Per avviare la macchina virtuale, **cliccare sul nome della macchina virtuale** nell'elenco a sinistra, e poi sul tasto **Avvia**; in alto nella schermata. Prima di avviare la VM è possibile scegliere di personalizzare l'hardware virtuale da utilizzare cliccando sul tasto  **Impostazioni**. La raccomandazione è quella di avere almeno **2 CPU virtuali** e almeno **2Gb di memoria RAM**.
-
-Dopo l'avvio, apparirà una nuova finestra in cui eseguirà il sistema operativo Linux. Al termine dell'avvio del sistema operativo, la macchina virtuale apparirà come segue:
-
-<p align="center">
-<img src="../images/image008.png" width="500" > 
-</p>
-
-E' possibile installare le cosiddette Guest Additions che permettono di avere tutta una serie di utilità per la macchina virtuale, ad esempio cartelle condivise tra la macchina host e la macchina virtuale, un miglior supporto al video etc. Per installarle, dal menù a tendina **Devices** selezionare **Insert Guest Additions CD Image ...** (vedi Figura)
-
-<p align="center">
-<img src="../images/image015.png" width="500" > 
-</p>
-
-
+## Uso della macchina virtuale
 
 > **_N.B.:_** Per effettuare operazioni di amministrazione (ad esempio, installazione di pacchetti, il comando sudo, etc.), se richiesta, si utilizzi la password ' **studente**' (nome utente: ' **studente**').

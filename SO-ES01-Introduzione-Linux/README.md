@@ -10,5 +10,5 @@ In questa lezione esercitativa viene affrontata l'installazione di una macchina 
 
 Sommario degli esempi:
 
-- [**1_installazione_VM**](https://github.com/SO-unina/esercitazioni/edit/main/SO-ES01-Introduzione-Linux/1_installazione_VM): Include un README sull'installazione di una macchina virtuale Ubuntu 20.04 LTS;
+- [**1_installazione_VM**](https://github.com/SO-unina/esercitazioni/edit/main/SO-ES01-Introduzione-Linux/1_installazione_VM): Include un README sull'uso della macchina virtuale Linux (Ubuntu 22.04 LTS) già pronta, con VMware o UTM;
 - [**2_comandi_shell**](https://github.com/SO-unina/esercitazioni/edit/main/SO-ES01-Introduzione-Linux/2_comandi_shell): Contiene una lista di comandi based della shell di Linux;
