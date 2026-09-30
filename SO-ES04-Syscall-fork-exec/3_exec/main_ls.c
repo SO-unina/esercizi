@@ -9,14 +9,14 @@ int main() {
 	pid=fork(); 
 		
 	if (pid==-1){
-		fprintf(stderr, "Generazione del processo fallita");
+		fprintf(stderr, "Generazione del processo fallita\n");
 		return -1;
 	}	
 	if  (pid==0){
                 printf("ESECUZIONE del comando 'ls -l'...\n");
 		execl("/bin/ls", "ls", "-l", NULL);
 		fprintf(stderr,"Exec fallita!!\n");
-		_exit(1);
+		_exit(1); //questa versione della exit esegue subito la system call exit_group senza le operazioni di housekeeping preliminari della exit classica
 	}
 	else if (pid>0){
 		wait(&st);

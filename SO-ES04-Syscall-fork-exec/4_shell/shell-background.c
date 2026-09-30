@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
+#include <fcntl.h>
 
 int main() {
 	int pid, st;
@@ -83,7 +84,7 @@ int main() {
 					return -1;
 				}
 				if (pid_nipote==0){
-					int fd = open ("/dev/null");  // redirezione dell'input
+					int fd = open ("/dev/null", O_RDONLY);  // redirezione dell'input
 					dup2(fd,0);	// redirige "stdin" verso "/dev/null"
 					close(fd);
 					argv[n-1]=(char *)0;  // metto "null" al posto del "&"
@@ -106,7 +107,7 @@ int main() {
 			wait(&st);
 
 			if (WIFEXITED(st) && WEXITSTATUS(st)!=0)
-				printf("Il figlio ha terminato con stato negativo (%d)\n", WEXITSTATUS(st));
+				printf("Il figlio ha terminato con stato di errore (%d)\n", WEXITSTATUS(st));
 			
 		}
 

@@ -82,7 +82,7 @@ int main() {
 			wait(&st);
 
 			if (WIFEXITED(st) && WEXITSTATUS(st)!=0)
-				printf("Il figlio ha terminato con stato negativo (%d)\n", WEXITSTATUS(st));
+				printf("Il figlio ha terminato con stato di errore (%d)\n", WEXITSTATUS(st));
 			
 		}
 

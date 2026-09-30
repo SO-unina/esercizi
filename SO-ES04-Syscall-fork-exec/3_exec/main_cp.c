@@ -3,12 +3,16 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <sys/types.h>
 #include <signal.h>
 
 int main(int argc, char * argv[]) {
 
-        int i, pid;
+        int i, pid, stato;
+
+        if( argc != 3 ) {
+                fprintf(stderr, "Uso: %s file_sorgente file_destinazione\n", argv[0]);
+                exit(1);
+        }
 
         pid = fork();
 
@@ -42,9 +46,12 @@ int main(int argc, char * argv[]) {
 
                 printf("Sono il processo padre, con PID %d\n", getpid());
 
-                wait(NULL);
+                wait(&stato);
 
-                printf("Copia effettuata con successo!\n");
+                if( WIFEXITED(stato) && WEXITSTATUS(stato) == 0 )
+                        printf("Copia effettuata con successo!\n");
+                else
+                        printf("La copia non è andata a buon fine\n");
                 printf("Il processo padre termina\n");
 
                 exit(0);
