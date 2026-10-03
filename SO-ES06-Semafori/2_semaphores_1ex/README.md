@@ -21,9 +21,9 @@ Osservare una race condition su un aggiornamento non atomico e utilizzare un sem
 ## Funzionamento
 
 1. Il padre crea una struttura condivisa contenente il semaforo e la variabile `valore`, inizialmente zero.
-2. Ciascun figlio ripete cento volte: attesa sul mutex, copia del valore in una variabile locale, incremento, scrittura del risultato e rilascio del mutex.
-3. La breve attesa nel mezzo della sezione critica rende più facile osservare la race condition se si rimuove la sincronizzazione.
-4. Il padre attende entrambi i figli e verifica che il risultato sia 200.
+2. Ciascun figlio ripete dieci volte: attesa sul mutex, copia del valore in una variabile locale, incremento, scrittura del risultato e rilascio del mutex.
+3. La pausa casuale (`sleep` di 0 o 1 secondi) nel mezzo della sezione critica rende più facile osservare la race condition se si rimuove la sincronizzazione.
+4. Il padre attende entrambi i figli e verifica che il risultato sia 20.
 5. Solo dopo la terminazione dei figli vengono distrutti il semaforo e la shared memory.
 
 ## Compilazione
@@ -40,7 +40,7 @@ Il `Makefile` compila con `gcc` e in fase di collegamento include le librerie ri
 ./main
 ```
 
-Il programma termina con successo quando stampa un valore finale pari a `200`.
+Il programma termina con successo quando stampa un valore finale pari a `20`.
 
 ## Terminazione e cleanup
 

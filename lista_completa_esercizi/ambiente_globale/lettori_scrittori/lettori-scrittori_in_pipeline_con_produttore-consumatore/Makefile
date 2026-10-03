@@ -1,11 +1,13 @@
+all: eseguibile
+
 eseguibile: main.o procedure.o
-	gcc -lpthread main.o procedure.o  -o eseguibile
+	gcc -o eseguibile main.o procedure.o -lpthread
 
 main.o: main.c procedure.h
-	gcc -c main.c -o main.o
+	gcc -c main.c
 
 procedure.o: procedure.c procedure.h
-	gcc -c procedure.c -o procedure.o
+	gcc -c procedure.c
 
 clean:
 	rm -f *.o

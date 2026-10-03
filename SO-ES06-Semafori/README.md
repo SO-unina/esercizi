@@ -15,7 +15,8 @@ Le operazioni principali sono `sem_wait`, che decrementa il contatore o blocca i
 
 - [1_semaphores_intro](1_semaphores_intro): confronto tra semafori nominati e semafori anonimi process-shared;
 - [2_semaphores_1ex](2_semaphores_1ex): mutua esclusione sull'incremento di una variabile condivisa;
-- [3_semaphores_2ex](3_semaphores_2ex): ricerca parallela del minimo con aggiornamento protetto del risultato globale.
+- [3_semaphores_2ex](3_semaphores_2ex): ricerca parallela del minimo con aggiornamento protetto del risultato globale;
+- [4_mutua_esclusione_exec](4_mutua_esclusione_exec): mutua esclusione tra eseguibili distinti lanciati con fork + exec, tramite semaforo nominato.
 
 ## Regole di cleanup
 

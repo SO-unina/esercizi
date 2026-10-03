@@ -41,38 +41,6 @@ static void figlio(shared_t *shared) {
     exit(0);
 }
 
-/*
-    ESEMPIO DI OUTPUT:
-        [12708] Attendo di entrare nella sezione critica
-        [12708] Sono entrato nella sezione critica
-        [12708] Valore corrente: 0, lo incremento
-        [12709] Attendo di entrare nella sezione critica
-        [12708] Nuovo valore: 1
-        [12708] Ho lasciato la sezione critica
-        [12708] Attendo di entrare nella sezione critica
-        [12708] Sono entrato nella sezione critica
-        [12708] Valore corrente: 1, lo incremento
-        [12708] Nuovo valore: 2
-        [12708] Ho lasciato la sezione critica
-        [12708] Attendo di entrare nella sezione critica
-        [12708] Sono entrato nella sezione critica
-        [12708] Valore corrente: 2, lo incremento
-        [12708] Nuovo valore: 3
-        ....
-
-    Perché torna sempre 12708 nella sezione critica anche se 12709 sta aspettando da più tempo?
-
-    Perché il semaforo garantisce la mutua esclusione, non l'equità. POSIX non promette che chi aspetta da più tempo entri per primo: quando arriva la sem_post, chi acquisisce il 
-    semaforo tra i contendenti è deciso dallo scheduler, non da una coda FIFO. Il 12709 è bloccato dentro sem_wait (si vede: stampa "Attendo" una volta sola e poi sparisce).
-    Il 12708 invece esegue sem_post e, due istruzioni di loop dopo, chiama di nuovo sem_wait. A quel punto la gara è impari: il 12708 sta già girando sulla CPU, mentre il 12709 
-    è stato appena svegliato e deve ancora essere rimesso in esecuzione dallo scheduler. Il 12708 trova il semaforo libero, lo decrementa e rientra prima ancora che il 12709 abbia
-    avuto modo di provarci. Questo fenomeno ha anche un nome: barging — chi "irrompe" correndo batte chi era educatamente in coda. 
-
-*/
-
-
-// Che succede invece SENZA l'utilizzo del semaforo?
-
 int main(void) {
     char name[64];
     sprintf(name, "/so_es06_ex1_%d", getpid());
@@ -118,7 +86,11 @@ int main(void) {
     }
 
     printf("Valore finale: %d (atteso: 20)\n", shared->valore);
-    int result = shared->valore == 20 ? 0 : 1;
+
+    int result = 1;
+    if (shared->valore == 20) {
+        result = 0;
+    }
 
     sem_destroy(&shared->mutex);
     munmap(shared, sizeof(shared_t));

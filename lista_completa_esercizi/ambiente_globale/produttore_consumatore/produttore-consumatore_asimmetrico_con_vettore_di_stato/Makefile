@@ -1,11 +1,13 @@
-all: main.o monitor.o
-	gcc -pthread -o start main.o monitor.o
+all: start
+
+start: main.o monitor.o
+	gcc -o start main.o monitor.o -lpthread
 
 main.o: main.c header.h
-	gcc -c -o main.o main.c
+	gcc -c main.c
 
 monitor.o: monitor.c header.h
-	gcc -c -o monitor.o monitor.c
+	gcc -c monitor.c
 
 clean:
 	rm -f *.o

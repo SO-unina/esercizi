@@ -67,7 +67,10 @@ int main(void) {
 
     printf("Minimo parallelo: %d; controllo sequenziale: %d\n", shared->minimo, controllo);
 
-    int result = shared->minimo == controllo ? 0 : 1;
+    int result = 1;
+    if (shared->minimo == controllo) {
+        result = 0;
+    }
 
     sem_destroy(&shared->mutex);
     munmap(shared, sizeof(shared_t));

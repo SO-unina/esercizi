@@ -29,12 +29,14 @@ void * thread_richiedente(void * p) {
 		produci_richiesta(m, &b);
 
 
-		printf("[PRODUTTORE] op1=%d, op2=%d, op3=%d, op4=%d\n\n",
-					b.operandi[0],
-					b.operandi[1],
-					(b.totale_operandi >= 3 ? b.operandi[2] : -1),
-					(b.totale_operandi >= 4 ? b.operandi[3] : -1)
-		);
+		int op3 = -1;
+		int op4 = -1;
+		if (b.totale_operandi >= 3)
+			op3 = b.operandi[2];
+		if (b.totale_operandi >= 4)
+			op4 = b.operandi[3];
+
+		printf("[PRODUTTORE] op1=%d, op2=%d, op3=%d, op4=%d\n\n", b.operandi[0], b.operandi[1], op3, op4);
 
 
 
@@ -64,13 +66,14 @@ void * thread_elaboratore(void * p) {
 		somma = consuma_richiesta(m, &b);
 
 
-		printf("[CONSUMATORE] op1=%d, op2=%d, op3=%d, op4=%d, somma=%d\n\n",
-					b.operandi[0],
-					b.operandi[1],
-					(b.totale_operandi >= 3 ? b.operandi[2] : -1),
-					(b.totale_operandi >= 4 ? b.operandi[3] : -1),
-					somma
-		);
+		int op3 = -1;
+		int op4 = -1;
+		if (b.totale_operandi >= 3)
+			op3 = b.operandi[2];
+		if (b.totale_operandi >= 4)
+			op4 = b.operandi[3];
+
+		printf("[CONSUMATORE] op1=%d, op2=%d, op3=%d, op4=%d, somma=%d\n\n", b.operandi[0], b.operandi[1], op3, op4, somma);
 
 
 		printf("[CONSUMATORE] fine consumazione\n\n");

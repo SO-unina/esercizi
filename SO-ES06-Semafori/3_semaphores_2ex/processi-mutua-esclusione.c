@@ -6,9 +6,14 @@
 #include <unistd.h>
 
 void ricerca_minimo(shared_t *shared, int indice_figlio) {
-    const int chunk = VECTOR_SIZE / CHILDREN;
-    const int begin = indice_figlio * chunk;
-    const int end = indice_figlio == CHILDREN - 1 ? VECTOR_SIZE : begin + chunk;
+    int chunk = VECTOR_SIZE / CHILDREN;
+    int begin = indice_figlio * chunk;
+
+    /* L'ultimo figlio copre anche gli eventuali elementi rimanenti. */
+    int end = begin + chunk;
+    if (indice_figlio == CHILDREN - 1) {
+        end = VECTOR_SIZE;
+    }
 
     /* Ogni figlio calcola il minimo della propria porzione senza sincronizzazione. */
     int minimo_locale = INT_MAX;

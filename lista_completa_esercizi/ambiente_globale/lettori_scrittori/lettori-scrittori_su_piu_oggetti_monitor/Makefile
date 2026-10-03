@@ -1,15 +1,14 @@
 all: start
 
 start: main.o procedure.o
-	gcc -lpthread -o start main.o procedure.o
-
-procedure.o: procedure.c header.h
-	gcc -c procedure.c
+	gcc -o start main.o procedure.o -lpthread
 
 main.o: main.c header.h
 	gcc -c main.c
 
-clean: 
+procedure.o: procedure.c header.h
+	gcc -c procedure.c
+
+clean:
 	rm -f *.o
-	rm -f *~
-	rm -f ./start
+	rm -f start

@@ -1,11 +1,13 @@
+all: start
+
 start: main.o dvd.o
-	gcc -lpthread -o start main.o dvd.o
+	gcc -o start main.o dvd.o -lpthread
 
 main.o: main.c dvd.h
-	gcc -c -o main.o main.c
+	gcc -c main.c
 
 dvd.o: dvd.c dvd.h
-	gcc -c -o dvd.o dvd.c
+	gcc -c dvd.c
 
 clean:
 	rm -f *.o
