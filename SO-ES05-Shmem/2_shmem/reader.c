@@ -37,7 +37,7 @@ int main(void) {
 
     printf("value=%d, text=%s\n", data->value, data->text);
 
-    printf("Dati letti. Premere Invio per terminare.\n", getpid());
+    printf("[%d] Dati letti. Premere Invio per terminare.\n", getpid());
     getchar();
 
     if (munmap(data, sizeof(shared_data_t)) == -1) {

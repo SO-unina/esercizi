@@ -34,7 +34,7 @@ Le esercitazioni utilizzano le seguenti famiglie di primitive:
 - semafori POSIX: `sem_init`, `sem_wait`, `sem_post`, `sem_destroy` (semafori anonimi process-shared) oppure `sem_open`, `sem_close`, `sem_unlink` (semafori nominati);
 - code di messaggi POSIX: `mq_open`, `mq_send`, `mq_receive`, `mq_close`, `mq_unlink`.
 
-I nomi delle risorse POSIX iniziano con `/` e sono visibili come file (`/dev/shm` per shared memory e semafori nominati, `/dev/mqueue` per le code di messaggi). Il processo che crea una risorsa nominata è anche responsabile della sua rimozione con `*_unlink`: la chiusura di un descrittore o la terminazione di un processo non rimuovono automaticamente il nome della risorsa. Lo script [utils/remove_all_posix_ipcs.sh](utils/remove_all_posix_ipcs.sh) rimuove le risorse POSIX residue dell'utente corrente.
+I nomi delle risorse POSIX iniziano con `/` e sono visibili come file (`/dev/shm` per shared memory e semafori nominati, `/dev/mqueue` per le code di messaggi). Il processo che crea una risorsa nominata è anche responsabile della sua rimozione con `*_unlink`: la chiusura di un descrittore o la terminazione di un processo non rimuovono automaticamente il nome della risorsa. Lo script [remove_all_posix_ipcs.sh](remove_all_posix_ipcs.sh) rimuove le risorse POSIX residue dell'utente corrente.
 
 Per compilare, linkare le librerie real-time e pthread quando richiesto: `-lrt` (code di messaggi e, su glibc datate, shared memory) e `-lpthread` (semafori).
 
