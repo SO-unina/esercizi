@@ -8,20 +8,8 @@
 #include <unistd.h>
 
 int main(void) {
-    char name[64];
-    sprintf(name, "/so_es05_single_%d", getpid());
-
-    int fd = shm_open(name, O_CREAT | O_EXCL | O_RDWR, 0600);
-    if (fd == -1) {
-        perror("shm_open");
-        exit(1);
-    }
-    if (ftruncate(fd, sizeof(shared_data_t)) == -1) {
-        perror("ftruncate");
-        exit(1);
-    }
-
-    shared_data_t *data = mmap(NULL, sizeof(shared_data_t), PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+    
+    shared_data_t *data = mmap(NULL, sizeof(shared_data_t), PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
 
     // shared_data_t *data = mmap(NULL, sizeof(shared_data_t), PROT_READ | PROT_WRITE, MAP_PRIVATE, fd, 0); // cosa cambia con MAP_PRIVATE?
 
@@ -54,10 +42,6 @@ int main(void) {
             perror("munmap figlio");
             exit(1);
         }
-        if (close(fd) == -1) {
-            perror("close figlio");
-            exit(1);
-        }
         exit(0);
     }
 
@@ -75,14 +59,6 @@ int main(void) {
 
     if (munmap(data, sizeof(shared_data_t)) == -1) {
         perror("munmap padre");
-        exit(1);
-    }
-    if (close(fd) == -1) {
-        perror("close");
-        exit(1);
-    }
-    if (shm_unlink(name) == -1) {
-        perror("shm_unlink");
         exit(1);
     }
 
