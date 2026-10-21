@@ -1,6 +1,6 @@
 # Introduzione ai semafori POSIX
 
-I due programmi mostrano le due modalità di condivisione dei semafori POSIX: un semaforo nominato, aperto tramite nome, e un semaforo anonimo collocato in una shared memory POSIX.
+I due programmi mostrano le due modalità di condivisione dei semafori POSIX: un semaforo nominato, aperto tramite nome, e un semaforo anonimo collocato in un mapping di memoria condiviso tra padre e figlio.
 
 ## Obiettivo didattico
 
@@ -11,12 +11,12 @@ Confrontare creazione, condivisione e distruzione di un semaforo nominato con qu
 - `sem_open`, `sem_close` e `sem_unlink` per il semaforo nominato.
 - `sem_init` e `sem_destroy` per il semaforo anonimo.
 - `sem_wait` e `sem_post` per bloccare e risvegliare il processo figlio.
-- `shm_open`, `ftruncate` e `mmap` per ospitare il semaforo process-shared.
+- `mmap` con `MAP_SHARED | MAP_ANONYMOUS` per ospitare il semaforo process-shared: restando nella gerarchia padre-figlio la memoria condivisa non ha bisogno di un nome.
 
 ## Struttura dei file
 
 - `named_sem.c`: crea un semaforo nominato con valore iniziale zero e sincronizza padre e figlio.
-- `process_shared_sem.c`: colloca un `sem_t` anonimo in shared memory e lo inizializza con `pshared=1`.
+- `process_shared_sem.c`: colloca un `sem_t` anonimo in un mapping anonimo condiviso e lo inizializza con `pshared=1`.
 - `Makefile`: genera `named_sem` e `process_shared_sem`.
 
 ## Funzionamento
@@ -44,12 +44,13 @@ Il `Makefile` compila con `gcc` e in fase di collegamento include le librerie ri
 
 ## Terminazione e cleanup
 
-`named_sem` esegue `sem_close` e `sem_unlink`. `process_shared_sem` esegue `sem_destroy`, `munmap`, `close` e `shm_unlink` dopo la terminazione del figlio.
+`named_sem` esegue `sem_close` e `sem_unlink`. `process_shared_sem` esegue soltanto `sem_destroy` e `munmap`: il mapping anonimo non ha un nome da rimuovere e la memoria sparisce quando terminano i processi che la mappano.
 
 ## Osservazioni
 
 - Un semaforo anonimo con `pshared=0` sarebbe adatto alla sincronizzazione tra thread dello stesso processo, non tra processi distinti.
 - Il semaforo deve rimanere in memoria condivisa per tutta la durata del suo utilizzo da parte dei processi.
+- Se i processi non fossero imparentati (fork + exec, o eseguibili lanciati separatamente), il mapping anonimo non basterebbe: servirebbe una shared memory nominata con `shm_open`, oppure un semaforo nominato.
 
 ## Domande di verifica
 

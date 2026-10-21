@@ -12,9 +12,10 @@
  * critica.
  *
  * Il semaforo deve essere nominato: la exec sostituisce lo spazio di
- * indirizzamento del figlio e distrugge ogni mapping ereditato, quindi
- * un semaforo anonimo in shared memory non sarebbe piu' raggiungibile.
- * Il nuovo programma puo' pero' riaprire per nome le risorse nominate. */
+ * indirizzamento del figlio e distrugge ogni mapping ereditato.
+ * Il nuovo programma puo' pero' riaprire per nome le risorse nominate. 
+ * Utile quando il semaforo non è collocato in SHM.
+ */
 
 int main(void) {
     /* Elimina un eventuale semaforo rimasto da una precedente esecuzione. */

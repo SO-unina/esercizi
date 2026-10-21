@@ -1,6 +1,6 @@
 # Esercizio 1 - Incremento in mutua esclusione
 
-Il programma crea due processi figli che incrementano cento volte ciascuno una variabile intera collocata in shared memory POSIX. Un semaforo POSIX process-shared protegge la sequenza di lettura, incremento e scrittura.
+Il programma crea due processi figli che incrementano dieci volte ciascuno una variabile intera collocata in un mapping di memoria condiviso. Un semaforo POSIX process-shared protegge la sequenza di lettura, incremento e scrittura.
 
 ## Obiettivo didattico
 
@@ -8,7 +8,7 @@ Osservare una race condition su un aggiornamento non atomico e utilizzare un sem
 
 ## Primitive e strutture utilizzate
 
-- `shm_open`, `ftruncate` e `mmap` per la struttura condivisa.
+- `mmap` con `MAP_SHARED | MAP_ANONYMOUS` per la struttura condivisa: nella gerarchia padre-figlio la memoria non ha bisogno di un nome.
 - `sem_init(&s->mutex, 1, 1)` per inizializzare un semaforo process-shared con valore uno.
 - `sem_wait` e `sem_post`, chiamate direttamente per acquisire e rilasciare il mutex.
 - `fork` e `wait` per creare e attendere i due processi figli.
@@ -24,7 +24,7 @@ Osservare una race condition su un aggiornamento non atomico e utilizzare un sem
 2. Ciascun figlio ripete dieci volte: attesa sul mutex, copia del valore in una variabile locale, incremento, scrittura del risultato e rilascio del mutex.
 3. La pausa casuale (`sleep` di 0 o 1 secondi) nel mezzo della sezione critica rende più facile osservare la race condition se si rimuove la sincronizzazione.
 4. Il padre attende entrambi i figli e verifica che il risultato sia 20.
-5. Solo dopo la terminazione dei figli vengono distrutti il semaforo e la shared memory.
+5. Solo dopo la terminazione dei figli vengono distrutti il semaforo e il mapping.
 
 ## Compilazione
 
@@ -44,13 +44,12 @@ Il programma termina con successo quando stampa un valore finale pari a `20`.
 
 ## Terminazione e cleanup
 
-Il padre invoca `sem_destroy` soltanto dopo aver atteso entrambi i figli, quindi esegue `munmap`, `close` e `shm_unlink`.
+Il padre invoca `sem_destroy` soltanto dopo aver atteso entrambi i figli, quindi esegue `munmap`: il mapping anonimo non ha un nome da rimuovere.
 
 ## Osservazioni
 
 - `valore++` non è un'operazione indivisibile: comprende lettura, modifica e scrittura.
 - Il semaforo è memorizzato nella stessa struttura condivisa dei dati protetti.
-- Il nome della shared memory contiene il PID del padre per ridurre le collisioni tra esecuzioni contemporanee.
 
 ## Domande di verifica
 

@@ -4,7 +4,7 @@ Il programma `start` crea un semaforo nominato e lancia con `fork` + `exec` due 
 
 ## Obiettivo didattico
 
-Mostrare il caso in cui il semaforo nominato è necessario: la `exec` sostituisce lo spazio di indirizzamento del nuovo programma e distrugge ogni mapping ereditato dalla `fork`, quindi un semaforo anonimo collocato in shared memory non sarebbe più raggiungibile. Le risorse nominate, invece, possono essere riaperte per nome da qualunque eseguibile.
+Mostrare il caso in cui il semaforo nominato è necessario: la `exec` sostituisce lo spazio di indirizzamento del nuovo programma e distrugge ogni mapping ereditato dalla `fork`. Le risorse nominate, invece, possono essere riaperte per nome da qualunque eseguibile. Utile quando il semaforo non è collocato in SHM.
 
 ## Primitive e strutture utilizzate
 

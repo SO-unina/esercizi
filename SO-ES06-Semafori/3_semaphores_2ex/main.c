@@ -1,6 +1,5 @@
 #include "processi.h"
 
-#include <fcntl.h>
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,20 +8,9 @@
 #include <unistd.h>
 
 int main(void) {
-    char name[64];
-    sprintf(name, "/so_es06_min_%d", getpid());
-
-    int fd = shm_open(name, O_CREAT | O_EXCL | O_RDWR, 0600);
-    if (fd == -1) {
-        perror("shm_open");
-        exit(1);
-    }
-    if (ftruncate(fd, sizeof(shared_t)) == -1) {
-        perror("ftruncate");
-        exit(1);
-    }
-
-    shared_t *shared = mmap(NULL, sizeof(shared_t), PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+    /* Mapping anonimo condiviso: restando nella gerarchia padre-figlio
+     * la memoria non ha bisogno di un nome. */
+    shared_t *shared = mmap(NULL, sizeof(shared_t), PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
     if (shared == MAP_FAILED) {
         perror("mmap");
         exit(1);
@@ -74,7 +62,5 @@ int main(void) {
 
     sem_destroy(&shared->mutex);
     munmap(shared, sizeof(shared_t));
-    close(fd);
-    shm_unlink(name);
     return result;
 }

@@ -1,6 +1,6 @@
 # Esercizio 2 - Ricerca parallela del minimo
 
-Il programma distribuisce tra dieci processi figli la ricerca del valore minimo in un vettore di 10.000 interi. Il vettore, il minimo globale e il semaforo sono contenuti in una shared memory POSIX.
+Il programma distribuisce tra dieci processi figli la ricerca del valore minimo in un vettore di 10.000 interi. Il vettore, il minimo globale e il semaforo sono contenuti in un mapping di memoria condiviso tra padre e figli.
 
 ## Obiettivo didattico
 
@@ -8,7 +8,7 @@ Separare il calcolo locale, che non richiede sincronizzazione, dall'aggiornament
 
 ## Primitive e strutture utilizzate
 
-- `shm_open`, `ftruncate` e `mmap` per allocare l'intera struttura condivisa.
+- `mmap` con `MAP_SHARED | MAP_ANONYMOUS` per allocare l'intera struttura condivisa: nella gerarchia padre-figlio la memoria non ha bisogno di un nome.
 - `sem_init(..., 1, 1)`, `sem_wait` e `sem_post` per il mutex process-shared.
 - `fork` per generare dieci processi e `wait` per attenderne la terminazione.
 - Un calcolo sequenziale nel padre per controllare il risultato ottenuto in parallelo.
@@ -46,7 +46,7 @@ L'output riporta il minimo parallelo e il minimo di controllo. I due valori devo
 
 ## Terminazione e cleanup
 
-Il semaforo viene distrutto dopo la terminazione dei dieci figli. Il padre rimuove mapping, descrittore e nome della shared memory.
+Il semaforo viene distrutto dopo la terminazione dei dieci figli. Il padre rimuove il mapping con `munmap`; non c'e' alcun nome da rimuovere.
 
 ## Osservazioni
 
