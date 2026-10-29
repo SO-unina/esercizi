@@ -2,6 +2,8 @@
 
 > **_N.B.:_** Prima di consultare le esercitazioni, leggere la [guida breve](git) per poter utilizzare il comando ``git``
 
+> **_N.B.:_** Dall'a.a. 2026-2027 sono utilizzate le IPC POSIX. Per gli a.a. precedenti fare riferimento al branch sulle [IPC System V](https://github.com/SO-unina/esercizi/tree/systemv)
+
 Sommario delle esercitazioni:
 
 - [**SO-ES01-Introduzione-Linux**](SO-ES01-Introduzione-Linux): Installazione VM Linux e comandi shell
