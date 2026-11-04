@@ -86,7 +86,7 @@ void Lettore (Buffer* buf) {
 
 	/*********Lettura********/
 	sleep(1); // per simulare un ritardo di lettura
-	printf("Valore letto=<%ld>, numero lettori=%d \n", buf->messaggio, buf->numlettori);
+	printf("Valore letto=<%ld>\n", buf->messaggio);
 
 	FineLettura(buf);
 }
