@@ -70,34 +70,36 @@ Compilare ed eseguire il codice:
 ```console
 $ make
 $ ./prodcons_coda_circolare
-Inizio figlio consumatore
-Inizio figlio consumatore
-Inizio figlio consumatore
-Inizio figlio consumatore
-Inizio figlio consumatore
-Inizio figlio produttore
-Inizio figlio produttore
-Inizio figlio produttore
-Inizio figlio produttore
-Inizio figlio produttore
-Il valore prodotto = 23
-Il valore prodotto = 41
-Il valore prodotto = 38
-Figlio produttore terminato
-Figlio produttore terminato
-Figlio produttore terminato
-Il valore consumato = 23
-Il valore consumato = 41
-Il valore consumato = 38
-Figlio produttore terminato
-Figlio produttore terminato
-Figlio consumatore terminato
-Il valore prodotto = 35
-Il valore prodotto = 20
-Figlio consumatore terminato
-Figlio consumatore terminato
-Il valore consumato = 35
-Figlio consumatore terminato
-Il valore consumato = 20
-Figlio consumatore terminato
+Inizio figlio consumatore (PID 113670)
+Inizio figlio consumatore (PID 113671)
+Inizio figlio consumatore (PID 113672)
+Inizio figlio consumatore (PID 113673)
+Inizio figlio consumatore (PID 113674)
+Inizio figlio produttore (PID 113675)
+Inizio figlio produttore (PID 113676)
+Inizio figlio produttore (PID 113677)
+Inizio figlio produttore (PID 113678)
+Inizio figlio produttore (PID 113679)
+Il valore prodotto = 16
+Figlio 113675 terminato
+Il valore consumato = 16
+Il valore prodotto = 72
+Figlio 113670 terminato
+Figlio 113676 terminato
+Il valore prodotto = 31
+Il valore consumato = 72
+Figlio 113671 terminato
+Figlio 113677 terminato
+Il valore prodotto = 17
+Il valore consumato = 31
+Figlio 113672 terminato
+Figlio 113678 terminato
+Il valore consumato = 17
+Il valore prodotto = 95
+Figlio 113673 terminato
+Figlio 113679 terminato
+Il valore consumato = 95
+Figlio 113674 terminato
 ```
+
+> **_N.B.:_** `wait(NULL)` attende la terminazione di un figlio qualsiasi: il padre non può sapere se si tratta di un produttore o di un consumatore, e per questo stampa il PID restituito, da confrontare con le righe ``Inizio figlio ...``. Produzioni e consumi si alternano: la ``sleep(2)`` è dentro la sezione critica, quindi i produttori depositano un valore ogni 2 secondi, uno alla volta, e i consumatori (protetti da un mutex diverso) prelevano in parallelo. L'esecuzione dura circa 12 secondi.

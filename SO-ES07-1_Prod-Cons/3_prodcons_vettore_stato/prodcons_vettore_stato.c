@@ -56,7 +56,7 @@ int main() {
 
 			//figlio consumatore
 
-			printf("Inizio figlio consumatore\n");
+			printf("Inizio figlio consumatore (PID %d)\n", getpid());
 
 			// NOTA: il generatore di numeri pseudo-casuali
 			// viene inizializzato in modo diverso per ogni
@@ -80,7 +80,7 @@ int main() {
 
 			//figlio produttore
 
-			printf("Inizio figlio produttore\n");
+			printf("Inizio figlio produttore (PID %d)\n", getpid());
 
 			// NOTA: il generatore di numeri pseudo-casuali
 			// viene inizializzato in modo diverso per ogni
@@ -95,14 +95,11 @@ int main() {
 
 
 
-	for(int i=0; i<NUM_PRODUTTORI; i++) {
-		wait(NULL);
-		printf("Figlio produttore terminato\n");
-	}
-
-	for(int i=0; i<NUM_CONSUMATORI; i++) {
-		wait(NULL);
-		printf("Figlio consumatore terminato\n");
+	/* wait(NULL) attende un figlio qualsiasi, produttore o consumatore:
+	   per sapere quale figlio e' terminato si stampa il PID restituito */
+	for(int i=0; i<NUM_PRODUTTORI+NUM_CONSUMATORI; i++) {
+		int pid = wait(NULL);
+		printf("Figlio %d terminato\n", pid);
 	}
 
 	sem_destroy(&p->spazio_disponibile);

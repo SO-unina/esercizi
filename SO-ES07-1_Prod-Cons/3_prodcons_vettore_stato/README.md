@@ -72,34 +72,36 @@ Compilare ed eseguire il codice:
 ```console
 $ make
 $ ./prodcons_vettore_stato
-Inizio figlio consumatore
-Inizio figlio consumatore
-Inizio figlio consumatore
-Inizio figlio consumatore
-Inizio figlio consumatore
-Inizio figlio produttore
-Inizio figlio produttore
-Inizio figlio produttore
-Inizio figlio produttore
-Inizio figlio produttore
+Inizio figlio consumatore (PID 113077)
+Inizio figlio consumatore (PID 113078)
+Inizio figlio consumatore (PID 113079)
+Inizio figlio consumatore (PID 113080)
+Inizio figlio consumatore (PID 113081)
+Inizio figlio produttore (PID 113082)
+Inizio figlio produttore (PID 113083)
+Inizio figlio produttore (PID 113084)
+Inizio figlio produttore (PID 113085)
+Inizio figlio produttore (PID 113086)
 Il valore prodotto = 16
-Figlio produttore terminato
-Il valore prodotto = 37
+Il valore prodotto = 80
+Il valore prodotto = 10
+Figlio 113082 terminato
+Figlio 113083 terminato
+Figlio 113084 terminato
+Il valore consumato = 80
 Il valore consumato = 16
-Figlio produttore terminato
-Figlio produttore terminato
-Il valore consumato = 37
-Il valore prodotto = 97
-Figlio produttore terminato
-Figlio produttore terminato
-Il valore consumato = 97
-Il valore prodotto = 39
-Figlio consumatore terminato
-Figlio consumatore terminato
-Il valore consumato = 39
-Il valore prodotto = 18
-Figlio consumatore terminato
-Figlio consumatore terminato
-Il valore consumato = 18
-Figlio consumatore terminato
+Il valore consumato = 10
+Figlio 113077 terminato
+Figlio 113078 terminato
+Figlio 113079 terminato
+Il valore prodotto = 34
+Il valore prodotto = 93
+Figlio 113085 terminato
+Figlio 113086 terminato
+Il valore consumato = 93
+Il valore consumato = 34
+Figlio 113080 terminato
+Figlio 113081 terminato
 ```
+
+> **_N.B.:_** `wait(NULL)` attende la terminazione di un figlio qualsiasi: il padre non può sapere se si tratta di un produttore o di un consumatore, e per questo stampa il PID restituito, da confrontare con le righe ``Inizio figlio ...``.
