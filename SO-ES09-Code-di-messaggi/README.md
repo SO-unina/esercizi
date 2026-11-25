@@ -9,6 +9,7 @@ Sommario degli esempi:
 - [**3_comunicazione_sync**](3_comunicazione_sync): Utilizzo delle code di messaggi per una comunicazione tramite send sincrona (rendezvous su code di servizio);
 - [**4_comunicazione_multi_eseguibile**](4_comunicazione_multi_eseguibile): Esercizio sull'utilizzo delle code di messaggi con applicazioni su più eseguibili;
 - [**5_esercitazione_chat**](5_esercitazione_chat): Esercitazione sull'uso delle code di messaggi per implementare una *chat*;
-- [**6_messaggi_priorita**](6_messaggi_priorita): Utilizzo delle priorità dei messaggi, una caratteristica specifica delle code POSIX.
+- [**6_messaggi_priorita**](6_messaggi_priorita): Utilizzo delle priorità dei messaggi, una caratteristica specifica delle code POSIX;
+- [**7_notifica_asincrona**](7_notifica_asincrona): Notifica asincrona dell'arrivo di un messaggio con `mq_notify` (`SIGEV_THREAD`): quando conviene usarla e come.
 
 > **Nota:** le code POSIX sono visibili come file in `/dev/mqueue`. Per compilare è necessario linkare la libreria real-time con `-lrt`.
