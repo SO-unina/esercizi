@@ -6,8 +6,10 @@
 
 #include "header.h"
 
+// Restituisce un float casuale nell'intervallo [i_sx, i_dx]
 float generaFloat(int i_sx, int i_dx) {
-	float x = (float)(rand() + i_sx) / (float)(RAND_MAX / i_dx);
+	// (float)rand() / RAND_MAX e' compreso tra 0 e 1
+	float x = i_sx + (float)rand() / RAND_MAX * (i_dx - i_sx);
 	return x;
 }
 

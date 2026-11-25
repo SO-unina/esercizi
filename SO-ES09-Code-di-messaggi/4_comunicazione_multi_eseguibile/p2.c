@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <time.h>
 #include <mqueue.h>
 
 #include "header.h"
@@ -16,7 +15,10 @@ int main() {
 
 	mqd_t id_queue = apri_coda();
 
-	srand(time(NULL));
+	// seme diverso per ogni processo: il suo PID. Con srand(time(NULL))
+	// P1 e P2, avviati nello stesso secondo, avrebbero lo stesso seme
+	// e quindi la stessa sequenza di numeri casuali
+	srand(getpid());
 
 
 	int i;

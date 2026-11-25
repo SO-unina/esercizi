@@ -19,8 +19,8 @@ struct msg_calc {
 	float numero;
 };
 
-//Genera un valore float nell'intervallo [i_dx,i_sx]
-float generaFloat(int i_dx, int i_sx);
+//Genera un valore float nell'intervallo [i_sx,i_dx]
+float generaFloat(int i_sx, int i_dx);
 
 //Apre (creandola se necessario) la coda condivisa
 mqd_t apri_coda(void);
